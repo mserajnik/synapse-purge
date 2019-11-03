@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+
+  synapse-purge:
+    image: mserajnik/synapse-purge:latest
+    command: cron # change to `run` to only run once instead of periodically via cron job
+    volumes:
+      - /path/to/synapse/data/directory:/data
+    environment:
+      - TZ=Etc/UTC
+      - 'SYNAPSE_PURGE_POSTGRES_CONNECTION_STRING=host=localhost port=5432 user=synapse dbname=synapse password=password'
+      - SYNAPSE_PURGE_SYNAPSE_API_URL=http://localhost:8008/
+      - SYNAPSE_PURGE_SYNAPSE_AUTH_TOKEN=
+      - SYNAPSE_PURGE_DELTA=86400
+      - SYNAPSE_PURGE_LOGGING_LEVEL=INFO
+      - SYNAPSE_PURGE_DOCKER_CRON_SCHEDULE=0 4 * * *
