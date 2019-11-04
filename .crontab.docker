@@ -1,0 +1,1 @@
+SYNAPSE_PURGE_DOCKER_CRON_SCHEDULE /usr/src/app/synapse-purge.py
