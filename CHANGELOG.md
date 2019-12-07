@@ -8,6 +8,11 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Changed
+
++ Old user and room avatars are now excluded from getting purged due to issues
+  with the latest ones getting removed as well
+
 ## 1.0.0 - 2019-11-04
 
 ### Added

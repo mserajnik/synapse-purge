@@ -74,7 +74,7 @@ def get_last_event_id(db: postgres.Postgres, room_id: str, before: datetime) -> 
 
 
 def get_important_media_ids(db: postgres.Postgres) -> Set[str]:
-    media_ids = {}
+    media_ids = set()
 
     for event in db.all('SELECT json FROM event_json'):
         data = json.loads(event)
@@ -82,14 +82,12 @@ def get_important_media_ids(db: postgres.Postgres) -> Set[str]:
 
         if data['type'] == 'm.room.member':
             avatar_url = content.get('avatar_url')
-            if not avatar_url:
-                continue
-
-            media_ids[content['displayname']] = avatar_url
+            if avatar_url:
+                media_ids.add(avatar_url)
         elif data['type'] == 'm.room.avatar':
-            media_ids[data['room_id']] = content['url']
+            media_ids.add(content['url'])
 
-    return set(urllib.parse.urlsplit(url).path[1:] for url in media_ids.values())
+    return set(urllib.parse.urlsplit(url).path[1:] for url in media_ids)
 
 
 def get_local_media_record_ids(db: postgres.Postgres, before: datetime) -> List[str]:

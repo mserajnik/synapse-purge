@@ -4,8 +4,9 @@
 
 This is a simple script to purge content from [Synapse][synapse] servers. It
 deletes events, local media and cached remote media up to a specified point in
-time. Currently, only Synapse instances using a [PostgreSQL][postgresql]
-database are supported.
+time. Old user and room avatars are (for now) excluded from getting purged due
+to issues with the latest ones getting removed as well. Currently, only Synapse
+instances using a [PostgreSQL][postgresql] database are supported.
 
 Note that content on remote (federated) servers can obviously not be deleted
 and that Synapse might not consider the most recent content as _history_, which
