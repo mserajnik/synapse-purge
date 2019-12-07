@@ -8,10 +8,18 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [1.1.0] - 2019-12-07
+
+### Changed
+
++ Old user and room avatars are now excluded from getting purged due to issues
+  with the latest ones getting removed as well
+
 ## 1.0.0 - 2019-11-04
 
 ### Added
 
 + Initial release
 
-[Unreleased]: https://github.com/mserajnik/synapse-purge/compare/1.0.0...develop
+[Unreleased]: https://github.com/mserajnik/synapse-purge/compare/1.1.0...develop
+[1.1.0]: https://github.com/mserajnik/synapse-purge/compare/1.0.0...1.1.0

@@ -3,12 +3,13 @@
 > A script to purge content from Synapse servers
 
 This is a simple script to purge content from [Synapse][synapse] servers. It
-deletes messages, local media and cached remote media up to a specified point
-in time. Currently, only Synapse instances using a [PostgreSQL][postgresql]
-database are supported.
+deletes events, local media and cached remote media up to a specified point in
+time. Old user and room avatars are (for now) excluded from getting purged due
+to issues with the latest ones getting removed as well. Currently, only Synapse
+instances using a [PostgreSQL][postgresql] database are supported.
 
-Note that data on remote (federated) servers can obviously not be deleted and
-that Synapse might not consider the most recent data as _history_, which
+Note that content on remote (federated) servers can obviously not be deleted
+and that Synapse might not consider the most recent content as _history_, which
 excludes it from beling deleted even if it is technically inside the specified
 purge timeframe.
 
