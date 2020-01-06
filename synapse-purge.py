@@ -53,7 +53,7 @@ def get_argument_parser() -> argparse.ArgumentParser:
     parser.add_argument('postgres_connection_string', nargs='?', default=os.getenv('SYNAPSE_PURGE_POSTGRES_CONNECTION_STRING'))
     parser.add_argument('synapse_auth_token', nargs='?', default=os.getenv('SYNAPSE_PURGE_SYNAPSE_AUTH_TOKEN'))
     parser.add_argument('--delta', '-d', type=int, default=os.getenv('SYNAPSE_PURGE_DELTA', 60 * 60 * 24))
-    parser.add_argument('--logging-level', '-l', choices=logger._levels, default=os.getenv('SYNAPSE_PURGE_LOGGING_LEVEL', 'INFO'))
+    parser.add_argument('--logging-level', '-l', choices=logger._core.levels, default=os.getenv('SYNAPSE_PURGE_LOGGING_LEVEL', 'INFO'))
     parser.add_argument('--api-url', '-a', default=os.getenv('SYNAPSE_PURGE_SYNAPSE_API_URL', 'http://localhost:8008/'))
     parser.add_argument('--media-store', '-m', default=os.getenv('SYNAPSE_PURGE_MEDIA_STORE_PATH', '/data/media_store'))
     return parser
