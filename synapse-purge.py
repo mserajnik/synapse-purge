@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
 # synapse-purge
-# Copyright (C) 2019  Chris Braun  https://github.com/cryzed
-# Copyright (C) 2019  Michael Serajnik  https://mserajnik.dev
+# Copyright (C) 2019-present  Chris Braun  https://github.com/cryzed
+# Copyright (C) 2019-present  Michael Serajnik  https://mserajnik.dev
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -53,7 +53,7 @@ def get_argument_parser() -> argparse.ArgumentParser:
     parser.add_argument('postgres_connection_string', nargs='?', default=os.getenv('SYNAPSE_PURGE_POSTGRES_CONNECTION_STRING'))
     parser.add_argument('synapse_auth_token', nargs='?', default=os.getenv('SYNAPSE_PURGE_SYNAPSE_AUTH_TOKEN'))
     parser.add_argument('--delta', '-d', type=int, default=os.getenv('SYNAPSE_PURGE_DELTA', 60 * 60 * 24))
-    parser.add_argument('--logging-level', '-l', choices=logger._levels, default=os.getenv('SYNAPSE_PURGE_LOGGING_LEVEL', 'INFO'))
+    parser.add_argument('--logging-level', '-l', choices=logger._core.levels, default=os.getenv('SYNAPSE_PURGE_LOGGING_LEVEL', 'INFO'))
     parser.add_argument('--api-url', '-a', default=os.getenv('SYNAPSE_PURGE_SYNAPSE_API_URL', 'http://localhost:8008/'))
     parser.add_argument('--media-store', '-m', default=os.getenv('SYNAPSE_PURGE_MEDIA_STORE_PATH', '/data/media_store'))
     return parser

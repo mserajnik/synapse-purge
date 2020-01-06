@@ -1,31 +1,10 @@
 #!/bin/sh
 
-if [[ $# -eq 0 ]]; then
-  echo "No mode selected, exiting."
-  exit 1
-fi
+USER_ID=${CUSTOM_UID:-1000}
+GROUP_ID=${CUSTOM_GID:-1000}
 
-if [[ $1 = cron ]]; then
-  cp .crontab.docker .crontab
-  sed -i "s~SYNAPSE_PURGE_DOCKER_CRON_SCHEDULE~$SYNAPSE_PURGE_DOCKER_CRON_SCHEDULE~g" .crontab
+echo "Setting permissions to UID/GID ${USER_ID}/${GROUP_ID}."
+chown ${USER_ID}:${GROUP_ID} -R /usr/src/app
+chown ${USER_ID}:${GROUP_ID} -R /data
 
-  source venv/bin/activate
-
-  stop() {
-    pkill supercronic
-    sleep 1
-  }
-
-  trap "stop" SIGTERM
-
-  supercronic .crontab &
-
-  wait $!
-elif [[ $1 = run ]]; then
-  source venv/bin/activate
-
-  ./synapse-purge.py
-else
-  echo "No mode selected, exiting."
-  exit 1
-fi
+su-exec ${USER_ID}:${GROUP_ID} "$@"

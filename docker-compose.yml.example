@@ -9,6 +9,8 @@ services:
       - /path/to/synapse/data/directory:/data
     environment:
       - TZ=Etc/UTC
+      - CUSTOM_UID=1000
+      - CUSTOM_GID=1000
       - 'SYNAPSE_PURGE_POSTGRES_CONNECTION_STRING=host=localhost port=5432 user=synapse dbname=synapse password=password'
       - SYNAPSE_PURGE_SYNAPSE_API_URL=http://localhost:8008/
       - SYNAPSE_PURGE_SYNAPSE_AUTH_TOKEN=
