@@ -1,35 +1,22 @@
 FROM python:3.8-alpine
 
-ARG HOST_USER_ID=1000
-ARG HOST_GROUP_ID=1000
-
 ENV \
-  HOST_USER_ID=$HOST_USER_ID \
-  HOST_GROUP_ID=$HOST_GROUP_ID \
   SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.1.9/supercronic-linux-amd64 \
   SUPERCRONIC=supercronic-linux-amd64 \
   SUPERCRONIC_SHA1SUM=5ddf8ea26b56d4a7ff6faecdd8966610d5cb9d85
-
-RUN \
-  if [ $(getent group ${HOST_GROUP_ID}) ]; then \
-    adduser -D -u ${HOST_USER_ID} synapse-purge; \
-  else \
-    addgroup -g ${HOST_GROUP_ID} synapse-purge && \
-    adduser -D -u ${HOST_USER_ID} -G synapse-purge synapse-purge; \
-  fi
 
 WORKDIR /usr/src/app
 
 COPY . .
 
 RUN \
-  chown -R synapse-purge:synapse-purge /usr/src/app && \
   chmod +x synapse-purge.py && \
-  mkdir /data && chown -R synapse-purge:synapse-purge /data && \
+  mkdir /data && \
   apk --no-cache add \
     build-base \
     curl \
-    postgresql-dev && \
+    postgresql-dev \
+    su-exec && \
   curl -fsSLO "$SUPERCRONIC_URL" && \
   echo "${SUPERCRONIC_SHA1SUM}  ${SUPERCRONIC}" | sha1sum -c - && \
   chmod +x "$SUPERCRONIC" && \
@@ -45,10 +32,13 @@ RUN \
   rm -r ~/.cache && \
   apk del build-base
 
-COPY docker-entrypoint.sh /usr/local/bin/start
-RUN chmod +x /usr/local/bin/start
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint
+COPY docker-cmd-run.sh /usr/local/bin/run
+COPY docker-cmd-cron.sh /usr/local/bin/cron
+RUN \
+  chmod +x /usr/local/bin/docker-entrypoint && \
+  chmod +x /usr/local/bin/run && \
+  chmod +x /usr/local/bin/cron
 
-USER synapse-purge
-
-ENTRYPOINT ["/usr/local/bin/start"]
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint"]
 CMD ["cron"]

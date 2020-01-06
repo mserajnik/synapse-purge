@@ -44,12 +44,6 @@ To install for running with Docker, you can simply pull the prebuilt image from
 user@local:~$ docker pull mserajnik/synapse-purge
 ```
 
-Alternatively, you can also build the image yourself. The user that is used
-inside the container when the script is run has UID `1000` and GID `1000` by
-default. You might want to adjust this by providing the arguments
-`HOST_USER_ID` and `HOST_GROUP_ID` when making a build in case you run into
-permission issues when the script tries to delete media.
-
 ### Installing without Docker
 
 To install without Docker, you can simply clone the repository and install
@@ -119,6 +113,10 @@ user@local:synapse-purge$ docker-compose up -d
 
 Depending on your choice, the script will now either run once (with command
 `run`) or periodically via cron job until stopped (with command `cron`).
+
+The user that is used inside the container when the script is run has the UID
+`1000` and the GID `1000` by default. You can change these by providing the
+environment variables `CUSTOM_UID` and `CUSTOM_GID` when creating a container.
 
 ### Running without Docker
 
