@@ -8,6 +8,11 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Changed
+
++ Changed the default Docker container behavior to only run synapse-purge once
+  instead of starting a cron job
+
 ## [1.2.0] - 2020-01-07
 
 ### Added
