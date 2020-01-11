@@ -40,5 +40,5 @@ RUN \
   chmod +x /usr/local/bin/run && \
   chmod +x /usr/local/bin/cron
 
-ENTRYPOINT ["/usr/local/bin/docker-entrypoint"]
-CMD ["cron"]
+ENTRYPOINT ["docker-entrypoint"]
+CMD ["run"]

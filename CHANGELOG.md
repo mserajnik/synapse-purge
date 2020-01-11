@@ -8,6 +8,13 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [1.3.0] - 2020-01-12
+
+### Changed
+
++ Changed the default Docker container behavior to only run synapse-purge once
+  instead of starting a cron job
+
 ## [1.2.0] - 2020-01-07
 
 ### Added
@@ -32,6 +39,7 @@ and this project adheres to
 
 + Initial release
 
-[Unreleased]: https://github.com/mserajnik/synapse-purge/compare/1.2.0...develop
+[Unreleased]: https://github.com/mserajnik/synapse-purge/compare/1.3.0...develop
+[1.3.0]: https://github.com/mserajnik/synapse-purge/compare/1.2.0...1.3.0
 [1.2.0]: https://github.com/mserajnik/synapse-purge/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/mserajnik/synapse-purge/compare/1.0.0...1.1.0
