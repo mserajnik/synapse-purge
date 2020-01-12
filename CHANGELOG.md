@@ -8,6 +8,12 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [1.4.1] - 2020-01-12
+
+### Fixed
+
++ Fixed the usage of `USER_ID` instead of `GROUP_ID` in Docker image builds
+
 ## [1.4.0] - 2020-01-12
 
 ### Removed
@@ -46,7 +52,8 @@ and this project adheres to
 
 + Initial release
 
-[Unreleased]: https://github.com/mserajnik/synapse-purge/compare/1.4.0...develop
+[Unreleased]: https://github.com/mserajnik/synapse-purge/compare/1.4.1...develop
+[1.4.1]: https://github.com/mserajnik/synapse-purge/compare/1.4.0...1.4.1
 [1.4.0]: https://github.com/mserajnik/synapse-purge/compare/1.3.0...1.4.0
 [1.3.0]: https://github.com/mserajnik/synapse-purge/compare/1.2.0...1.3.0
 [1.2.0]: https://github.com/mserajnik/synapse-purge/compare/1.1.0...1.2.0
