@@ -44,6 +44,11 @@ To install for running with Docker, you can simply pull the prebuilt image from
 user@local:~$ docker pull mserajnik/synapse-purge
 ```
 
+Alternatively, you can also build the image yourself. The user that is used
+inside the container has UID `1000` and GID `1000` by default. You can adjust
+this (e.g., to match your host UID/GID) by providing the arguments `USER_ID`
+and `GROUP_ID` when making a build.
+
 ### Installing without Docker
 
 To install without Docker, you can simply clone the repository and install

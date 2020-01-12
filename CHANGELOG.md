@@ -8,6 +8,13 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [1.4.0] - 2020-01-12
+
+### Removed
+
++ Removed the ability to define custom UID and GID for the Docker container at
+  container creation due to several issues arising from that
+
 ## [1.3.0] - 2020-01-12
 
 ### Changed
@@ -39,7 +46,8 @@ and this project adheres to
 
 + Initial release
 
-[Unreleased]: https://github.com/mserajnik/synapse-purge/compare/1.3.0...develop
+[Unreleased]: https://github.com/mserajnik/synapse-purge/compare/1.4.0...develop
+[1.4.0]: https://github.com/mserajnik/synapse-purge/compare/1.3.0...1.4.0
 [1.3.0]: https://github.com/mserajnik/synapse-purge/compare/1.2.0...1.3.0
 [1.2.0]: https://github.com/mserajnik/synapse-purge/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/mserajnik/synapse-purge/compare/1.0.0...1.1.0
