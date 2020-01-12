@@ -33,9 +33,9 @@ RUN \
     requests~=2.22.0 && \
   rm -r ~/.cache && \
   apk del build-base && \
-  chown -R ${USER_ID}:${USER_ID} /usr/src/app && \
+  chown -R ${USER_ID}:${GROUP_ID} /usr/src/app && \
   chmod +x synapse-purge.py && \
-  mkdir /data && chown -R ${USER_ID}:${USER_ID} /data
+  mkdir /data && chown -R ${USER_ID}:${GROUP_ID} /data
 
 COPY docker-cmd-run.sh /usr/local/bin/run
 COPY docker-cmd-cron.sh /usr/local/bin/cron
@@ -43,6 +43,6 @@ RUN \
   chmod +x /usr/local/bin/run && \
   chmod +x /usr/local/bin/cron
 
-USER ${USER_ID}:${USER_ID}
+USER ${USER_ID}:${GROUP_ID}
 
 CMD ["run"]
