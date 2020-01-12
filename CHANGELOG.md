@@ -8,6 +8,11 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Removed
+
++ Removed the ability to define custom UID and GID for the Docker container at
+  container creation due to several issues arising from that
+
 ## [1.3.0] - 2020-01-12
 
 ### Changed
