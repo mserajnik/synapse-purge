@@ -8,6 +8,10 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Fixed
+
++ Fixed the usage of `USER_ID` instead of `GROUP_ID` in Docker image builds
+
 ## [1.4.0] - 2020-01-12
 
 ### Removed
