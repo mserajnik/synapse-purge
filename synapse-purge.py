@@ -137,10 +137,14 @@ def main(arguments: argparse.Namespace) -> ExitCode:
     logger.add(sys.stderr, level=arguments.logging_level)
     logger.debug('Called with {!r}', arguments)
 
+    if not (arguments.postgres_connection_string and arguments.synapse_auth_token):
+        logger.error('Postgres connection string and Synapse auth token can not be empty')
+        return ExitCode.Failure
+
     try:
         db = postgres.Postgres(arguments.postgres_connection_string)
-    except psycopg2.OperationalError:
-        logger.exception('Connecting using {!r} failed:', arguments.connection_string)
+    except (psycopg2.OperationalError, psycopg2.InternalError):
+        logger.exception('Connecting to database using {!r} failed:', arguments.postgres_connection_string)
         return ExitCode.Failure
 
     session = requests.session()

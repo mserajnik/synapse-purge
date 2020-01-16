@@ -52,19 +52,19 @@ and `GROUP_ID` when making a build.
 ### Installing without Docker
 
 To install without Docker, you can simply clone the repository and install
-dependencies.
+dependencies using Poetry.
 
 ```zsh
-user@local$ git clone https://github.com/mserajnik/synapse-purge.git # after cloning, install Python dependencies using your preferred way
+user@local:~$ git clone https://github.com/mserajnik/synapse-purge.git
+user@local:~$ cd synapse-purge
+user@local:synapse-purge$ poetry install
 ```
 
 ### Dependencies
 
 + [Docker][docker] (when running with Docker)
-+ [Python 3.x][python] and the following packages (when running without Docker)
-  + [loguru][loguru]
-  + [postgres][postgres]
-  + [requests][requests]
++ [Python 3.7+][python] (when running without Docker)
++ [Poetry][poetry] (when running without Docker)
 
 ### Updating
 
@@ -124,6 +124,13 @@ The user that is used inside the container when the script is run has the UID
 environment variables `CUSTOM_UID` and `CUSTOM_GID` when creating a container.
 
 ### Running without Docker
+
+First of all, spawn a shell within the virtual environment (this also creates
+the environment if it does not exist yet):
+
+```zsh
+user@local:synapse-purge$ poetry shell
+```
 
 You can use either environment variables or arguments to configure the script
 when running without Docker. The script will look for the provided argument
@@ -191,9 +198,7 @@ You are welcome to help out!
 [docker]: https://www.docker.com/
 [docker-hub]: https://hub.docker.com/r/mserajnik/synapse-purge/
 [python]: https://www.python.org/
-[loguru]: https://pypi.org/project/loguru/
-[postgres]: https://pypi.org/project/postgres/
-[requests]: https://pypi.org/project/requests3/
+[poetry]: https://python-poetry.org/
 [semantic-versioning]: https://semver.org/
 [docker-compose]: https://docs.docker.com/compose/
 [tz-database-time-zones]: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones

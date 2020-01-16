@@ -8,6 +8,10 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
++ Added the ability to install dependencies using Poetry
+
 ## [1.4.1] - 2020-01-12
 
 ### Fixed
