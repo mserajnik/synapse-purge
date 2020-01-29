@@ -34,7 +34,6 @@ RUN \
   rm -r ~/.cache && \
   apk del build-base && \
   chown -R ${USER_ID}:${GROUP_ID} /usr/src/app && \
-  chmod +x synapse-purge.py && \
   mkdir /data && chown -R ${USER_ID}:${GROUP_ID} /data
 
 COPY docker-cmd-run.sh /usr/local/bin/run
