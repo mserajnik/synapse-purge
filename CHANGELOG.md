@@ -8,6 +8,8 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [1.5.0] - 2020-01-29
+
 ### Added
 
 + Added the ability to install dependencies using Poetry
@@ -57,7 +59,8 @@ and this project adheres to
 
 + Initial release
 
-[Unreleased]: https://github.com/mserajnik/synapse-purge/compare/1.4.1...develop
+[Unreleased]: https://github.com/mserajnik/synapse-purge/compare/1.5.0...develop
+[1.5.0]: https://github.com/mserajnik/synapse-purge/compare/1.4.1...1.5.0
 [1.4.1]: https://github.com/mserajnik/synapse-purge/compare/1.4.0...1.4.1
 [1.4.0]: https://github.com/mserajnik/synapse-purge/compare/1.3.0...1.4.0
 [1.3.0]: https://github.com/mserajnik/synapse-purge/compare/1.2.0...1.3.0
