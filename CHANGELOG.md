@@ -11,6 +11,7 @@ and this project adheres to
 ### Added
 
 + Added the ability to install dependencies using Poetry
++ Added automatic code formatting using Black
 
 ## [1.4.1] - 2020-01-12
 
