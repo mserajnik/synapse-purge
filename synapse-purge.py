@@ -251,7 +251,7 @@ def main(arguments: argparse.Namespace) -> ExitCode:
         paths = get_local_media_paths(arguments.media_store, media_id)
         for path in paths:
             if not os.path.isfile(path):
-                logger.warning("{!r} could not be found or is not a file", path)
+                logger.debug("{!r} could not be found or is not a file", path)
                 continue
             os.remove(path)
 
