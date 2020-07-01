@@ -22,6 +22,7 @@ purge timeframe.
   + [Updating](#updating)
     + [Updating with Docker](#updating-with-docker)
     + [Updating without Docker](#updating-without-docker)
+    + [Upgrading from `1.x.x` to `2.x.x`](#upgrading-from-1xx-to-2xx)
 + [Usage](#usage)
   + [Running with Docker](#running-with-docker)
   + [Running without Docker](#running-without-docker)
@@ -92,6 +93,12 @@ well:
 ```zsh
 user@local:synapse-purge$ git pull
 ```
+
+#### Upgrading from `1.x.x` to `2.x.x`
+
+`2.0.0` has no breaking changes other than the move of the Docker image to a
+new location. Please pull `mtbl/synapse-purge` from now on as the old location
+is no longer available.
 
 ## Usage
 

@@ -8,6 +8,8 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [2.0.0] - 2020-07-01
+
 ### Changed
 
 + Added media thumbnail purging
@@ -64,7 +66,8 @@ and this project adheres to
 
 + Initial release
 
-[Unreleased]: https://github.com/imtbl/synapse-purge/compare/1.5.0...develop
+[Unreleased]: https://github.com/imtbl/synapse-purge/compare/2.0.0...develop
+[2.0.0]: https://github.com/imtbl/synapse-purge/compare/1.5.0...2.0.0
 [1.5.0]: https://github.com/imtbl/synapse-purge/compare/1.4.1...1.5.0
 [1.4.1]: https://github.com/imtbl/synapse-purge/compare/1.4.0...1.4.1
 [1.4.0]: https://github.com/imtbl/synapse-purge/compare/1.3.0...1.4.0
