@@ -2,7 +2,7 @@
 
 # synapse-purge
 # Copyright (C) 2019-present  Chris Braun  https://github.com/cryzed
-# Copyright (C) 2019-present  Michael Serajnik  https://mserajnik.dev
+# Copyright (C) 2019-present  imtbl  https://github.com/imtbl
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by

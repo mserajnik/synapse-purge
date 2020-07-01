@@ -3,7 +3,7 @@ version: '3'
 services:
 
   synapse-purge:
-    image: mserajnik/synapse-purge:latest
+    image: mtbl/synapse-purge:latest
     command: cron # change to `run` to only run once instead of periodically via cron job
     volumes:
       - /path/to/synapse/data/directory:/data
