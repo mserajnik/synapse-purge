@@ -22,6 +22,7 @@ purge timeframe.
   + [Updating](#updating)
     + [Updating with Docker](#updating-with-docker)
     + [Updating without Docker](#updating-without-docker)
+    + [Upgrading from `1.x.x` to `2.x.x`](#upgrading-from-1xx-to-2xx)
 + [Usage](#usage)
   + [Running with Docker](#running-with-docker)
   + [Running without Docker](#running-without-docker)
@@ -41,7 +42,7 @@ To install for running with Docker, you can simply pull the prebuilt image from
 [Docker Hub][docker-hub]:
 
 ```zsh
-user@local:~$ docker pull mserajnik/synapse-purge
+user@local:~$ docker pull mtbl/synapse-purge
 ```
 
 Alternatively, you can also build the image yourself. The user that is used
@@ -55,7 +56,7 @@ To install without Docker, you can simply clone the repository and install
 dependencies using Poetry.
 
 ```zsh
-user@local:~$ git clone https://github.com/mserajnik/synapse-purge.git
+user@local:~$ git clone https://github.com/imtbl/synapse-purge.git
 user@local:~$ cd synapse-purge
 user@local:synapse-purge$ poetry install
 ```
@@ -81,7 +82,7 @@ versions.
 Simply pull the latest Docker image to update:
 
 ```zsh
-user@local:~$ docker pull mserajnik/synapse-purge
+user@local:~$ docker pull mtbl/synapse-purge
 ```
 
 #### Updating without Docker
@@ -92,6 +93,12 @@ well:
 ```zsh
 user@local:synapse-purge$ git pull
 ```
+
+#### Upgrading from `1.x.x` to `2.x.x`
+
+`2.0.0` has no breaking changes other than the move of the Docker image to a
+new location. Please pull `mtbl/synapse-purge` from now on as the old location
+is no longer available.
 
 ## Usage
 
@@ -181,7 +188,7 @@ instead might be preferable in that case (see [here](#running-without-docker)).
 
 ## Maintainer
 
-[mserajnik][maintainer]
+[imtbl][maintainer]
 
 ## Contribute
 
@@ -191,19 +198,19 @@ You are welcome to help out!
 
 ## License
 
-[AGPLv3](LICENSE) © Michael Serajnik
+[AGPLv3](LICENSE) © imtbl
 
 [synapse]: https://github.com/matrix-org/synapse/
 [postgresql]: https://www.postgresql.org/
 [docker]: https://www.docker.com/
-[docker-hub]: https://hub.docker.com/r/mserajnik/synapse-purge/
+[docker-hub]: https://hub.docker.com/r/mtbl/synapse-purge/
 [python]: https://www.python.org/
 [poetry]: https://python-poetry.org/
 [semantic-versioning]: https://semver.org/
 [docker-compose]: https://docs.docker.com/compose/
 [tz-database-time-zones]: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
-[docker-hub-badge]: https://img.shields.io/docker/cloud/automated/mserajnik/synapse-purge.svg
+[docker-hub-badge]: https://img.shields.io/docker/cloud/automated/mtbl/synapse-purge.svg
 
-[maintainer]: https://github.com/mserajnik
-[issues]: https://github.com/mserajnik/synapse-purge/issues/new
+[maintainer]: https://github.com/imtbl
+[issues]: https://github.com/imtbl/synapse-purge/issues/new

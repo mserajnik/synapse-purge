@@ -2,7 +2,7 @@
 
 # synapse-purge
 # Copyright (C) 2019-present  Chris Braun  https://github.com/cryzed
-# Copyright (C) 2019-present  Michael Serajnik  https://mserajnik.dev
+# Copyright (C) 2019-present  imtbl  https://github.com/imtbl
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -69,7 +69,7 @@ def get_argument_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--logging-level",
         "-l",
-        choices=logger._core.levels,
+        choices={"TRACE", "DEBUG", "INFO", "SUCCESS", "WARNING", "ERROR", "CRITICAL"},
         default=os.getenv("SYNAPSE_PURGE_LOGGING_LEVEL", "INFO"),
     )
     parser.add_argument(
@@ -162,10 +162,15 @@ def purge_remote_media(
     ).json()
 
 
-def get_local_media_path(media_store_path: str, media_id: str) -> str:
-    return os.path.join(
-        media_store_path, "local_content", media_id[:2], media_id[2:4], media_id[4:]
-    )
+def get_local_media_paths(media_store_path: str, media_id: str) -> List[str]:
+    paths = []
+    for folder_name in "local_content", "local_thumbnails":
+        path = os.path.join(
+            media_store_path, folder_name, media_id[:2], media_id[2:4], media_id[4:]
+        )
+        paths.append(path)
+
+    return paths
 
 
 def wait_for_purge(
@@ -204,7 +209,7 @@ def main(arguments: argparse.Namespace) -> ExitCode:
 
     before_date = get_delta_date(int(arguments.delta))
     before_date_string = before_date.isoformat(sep=" ", timespec="seconds")
-    logger.info("Purging events up to: {}", before_date_string)
+    logger.info("Purging events up to: {} UTC", before_date_string)
 
     # Purge room history for all rooms
     rooms = get_room_record_ids(db)
@@ -214,14 +219,14 @@ def main(arguments: argparse.Namespace) -> ExitCode:
         event_id = get_last_event_id(db, room_id, before_date)
         if event_id is None:
             logger.info(
-                "No event ID before: {} for room: {!r}, skipping",
+                "No event ID before: {} UTC for room: {!r}, skipping",
                 before_date_string,
                 room_id,
             )
             continue
 
         logger.info(
-            "Last event ID before: {} for room {!r}: {!r}",
+            "Last event ID before: {} UTC for room {!r}: {!r}",
             before_date_string,
             room_id,
             event_id,
@@ -231,7 +236,7 @@ def main(arguments: argparse.Namespace) -> ExitCode:
         result = wait_for_purge(session, arguments.api_url, purge_id)
         logger.info("Purged room: {!r} with status: {!r}", room_id, result)
 
-    logger.info("Purging local media older than: {}...", before_date_string)
+    logger.info("Purging local media older than: {} UTC...", before_date_string)
     local_media = get_local_media_record_ids(db, before_date)
     important_files = get_important_media_ids(db)
 
@@ -243,16 +248,17 @@ def main(arguments: argparse.Namespace) -> ExitCode:
         logger.info(
             "({}/{}) Processing media: {!r}...", index, old_media_count, media_id
         )
-        path = get_local_media_path(arguments.media_store, media_id)
-        if not os.path.isfile(path):
-            logger.warning("{!r} could not be found or is not a file", path)
-            continue
+        paths = get_local_media_paths(arguments.media_store, media_id)
+        for path in paths:
+            if not os.path.isfile(path):
+                logger.debug("{!r} could not be found or is not a file", path)
+                continue
+            os.remove(path)
 
-        os.remove(path)
         delete_local_media_record(db, media_id)
 
     # Purge remote media
-    logger.info("Purging cached remote media older than: {}...", before_date_string)
+    logger.info("Purging cached remote media older than: {} UTC...", before_date_string)
     result = purge_remote_media(session, arguments.api_url, before_date)
     logger.info("Purged cached remote media: {!r}", result)
     return ExitCode.Success
