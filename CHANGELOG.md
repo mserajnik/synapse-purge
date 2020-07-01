@@ -8,6 +8,11 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Changed
+
++ Added media thumbnail purging
++ Clarified that the printed timestamps are UTC
+
 ## [1.5.0] - 2020-01-29
 
 ### Added
