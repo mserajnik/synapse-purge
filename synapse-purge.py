@@ -115,7 +115,11 @@ def get_important_media_ids(db: postgres.Postgres) -> Set[str]:
             if avatar_url:
                 media_ids.add(avatar_url)
         elif data["type"] == "m.room.avatar":
-            media_ids.add(content["url"])
+            url = content.get("url")
+            if url:
+                media_ids.add(url)
+            else:
+                logger.error("No URL defined for m.room.avatar event: {!r}", event)
 
     return set(urllib.parse.urlsplit(url).path[1:] for url in media_ids)
 
