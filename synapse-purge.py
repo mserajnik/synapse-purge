@@ -109,12 +109,17 @@ def get_important_media_ids(db: postgres.Postgres) -> Set[str]:
     for event in db.all("SELECT json FROM event_json"):
         data = json.loads(event)
         content = data["content"]
+        type_ = data["type"]
 
-        if data["type"] == "m.room.member":
+        if type_ == "m.room.member":
             avatar_url = content.get("avatar_url")
             if avatar_url:
                 media_ids.add(avatar_url)
-        elif data["type"] == "m.room.avatar":
+        elif type_ == "m.room.avatar":
+            if "url" not in content:
+                logger.warning("No URL defined for {!r}-event: {!r}", type_, data)
+                continue
+
             media_ids.add(content["url"])
 
     return set(urllib.parse.urlsplit(url).path[1:] for url in media_ids)
