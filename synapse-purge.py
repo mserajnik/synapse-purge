@@ -231,10 +231,14 @@ def main(arguments: argparse.Namespace) -> ExitCode:
             room_id,
             event_id,
         )
-        purge_id = purge_history(session, arguments.api_url, room_id, event_id)
-        logger.info("Purging room: {!r} in progress: {!r}...", room_id, purge_id)
-        result = wait_for_purge(session, arguments.api_url, purge_id)
-        logger.info("Purged room: {!r} with status: {!r}", room_id, result)
+        try:
+            purge_id = purge_history(session, arguments.api_url, room_id, event_id)
+            logger.info("Purging room: {!r} in progress: {!r}...", room_id, purge_id)
+            result = wait_for_purge(session, arguments.api_url, purge_id)
+            logger.info("Purged room: {!r} with status: {!r}", room_id, result)
+        except KeyError:
+            logger.error("Failed to purge room: {!r}", room_id)
+
 
     logger.info("Purging local media older than: {} UTC...", before_date_string)
     local_media = get_local_media_record_ids(db, before_date)
