@@ -8,6 +8,15 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [2.1.0] - 2020-07-26
+
+### Fixed
+
++ Made it so missing `purge_id` fields do not cause synapse-purge to error and
+  exit
++ Made it so `m.room.avatar` events with missing `url` fields do not cause
+  synapse-purge to error and exit
+
 ## [2.0.0] - 2020-07-01
 
 ### Changed
@@ -66,7 +75,8 @@ and this project adheres to
 
 + Initial release
 
-[Unreleased]: https://github.com/imtbl/synapse-purge/compare/2.0.0...develop
+[Unreleased]: https://github.com/imtbl/synapse-purge/compare/2.1.0...develop
+[2.1.0]: https://github.com/imtbl/synapse-purge/compare/2.0.0...2.1.0
 [2.0.0]: https://github.com/imtbl/synapse-purge/compare/1.5.0...2.0.0
 [1.5.0]: https://github.com/imtbl/synapse-purge/compare/1.4.1...1.5.0
 [1.4.1]: https://github.com/imtbl/synapse-purge/compare/1.4.0...1.4.1

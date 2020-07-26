@@ -109,12 +109,17 @@ def get_important_media_ids(db: postgres.Postgres) -> Set[str]:
     for event in db.all("SELECT json FROM event_json"):
         data = json.loads(event)
         content = data["content"]
+        type_ = data["type"]
 
-        if data["type"] == "m.room.member":
+        if type_ == "m.room.member":
             avatar_url = content.get("avatar_url")
             if avatar_url:
                 media_ids.add(avatar_url)
-        elif data["type"] == "m.room.avatar":
+        elif type_ == "m.room.avatar":
+            if "url" not in content:
+                logger.warning("No URL defined for {!r}-event: {!r}", type_, data)
+                continue
+
             media_ids.add(content["url"])
 
     return set(urllib.parse.urlsplit(url).path[1:] for url in media_ids)
@@ -140,10 +145,10 @@ def delete_local_media_record(db: postgres.Postgres, media_id: str) -> None:
 
 def purge_history(
     session: requests.Session, api_url: str, room_id: str, event_id: str
-) -> str:
+) -> Optional[str]:
     url = get_api_url(api_url, PURGE_HISTORY_API_ENDPOINT).format(room=room_id)
     payload = {"delete_local_events": True, "purge_up_to_event_id": event_id}
-    return session.post(url, json=payload).json()["purge_id"]
+    return session.post(url, json=payload).json().get("purge_id")
 
 
 def purge_history_status(
@@ -232,6 +237,10 @@ def main(arguments: argparse.Namespace) -> ExitCode:
             event_id,
         )
         purge_id = purge_history(session, arguments.api_url, room_id, event_id)
+        if not purge_id:
+            logger.warning("Failed to purge room: {!r}: received no purge ID", room_id)
+            continue
+
         logger.info("Purging room: {!r} in progress: {!r}...", room_id, purge_id)
         result = wait_for_purge(session, arguments.api_url, purge_id)
         logger.info("Purged room: {!r} with status: {!r}", room_id, result)
