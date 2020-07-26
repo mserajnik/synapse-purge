@@ -238,7 +238,7 @@ def main(arguments: argparse.Namespace) -> ExitCode:
         )
         purge_id = purge_history(session, arguments.api_url, room_id, event_id)
         if not purge_id:
-            logger.warning("Failed to purge room: {!r}: received no purge ID")
+            logger.warning("Failed to purge room: {!r}: received no purge ID", room_id)
             continue
 
         logger.info("Purging room: {!r} in progress: {!r}...", room_id, purge_id)
