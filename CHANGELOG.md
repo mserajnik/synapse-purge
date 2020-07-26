@@ -8,6 +8,13 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Fixed
+
++ Made it so missing `purge_id` fields do not cause synapse-purge to error and
+  exit
++ Made it so `m.room.avatar` events with missing `url` fields do not cause
+  synapse-purge to error and exit
+
 ## [2.0.0] - 2020-07-01
 
 ### Changed
