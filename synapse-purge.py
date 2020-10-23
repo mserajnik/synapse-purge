@@ -32,9 +32,9 @@ import psycopg2
 import requests
 from loguru import logger
 
-PURGE_HISTORY_API_ENDPOINT = "/_matrix/client/r0/admin/purge_history/{room}"
-PURGE_HISTORY_STATUS_API_ENDPOINT = "/_matrix/client/r0/admin/purge_history_status/{id}"
-PURGE_REMOTE_MEDIA_API_ENDPOINT = "/_matrix/client/r0/admin/purge_media_cache/"
+PURGE_HISTORY_API_ENDPOINT = "/_synapse/admin/v1/purge_history/{room}"
+PURGE_HISTORY_STATUS_API_ENDPOINT = "/_synapse/admin/v1/purge_history_status/{id}"
+PURGE_REMOTE_MEDIA_API_ENDPOINT = "/_synapse/admin/v1/purge_media_cache"
 
 
 class ExitCode(enum.IntEnum):

@@ -8,6 +8,12 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [2.2.0] - 2020-10-23
+
+### Changed
+
++ Maintenance release, no feature changes
+
 ## [2.1.0] - 2020-07-26
 
 ### Fixed
@@ -75,7 +81,8 @@ and this project adheres to
 
 + Initial release
 
-[Unreleased]: https://github.com/imtbl/synapse-purge/compare/2.1.0...develop
+[Unreleased]: https://github.com/imtbl/synapse-purge/compare/2.2.0...develop
+[2.2.0]: https://github.com/imtbl/synapse-purge/compare/2.1.0...2.2.0
 [2.1.0]: https://github.com/imtbl/synapse-purge/compare/2.0.0...2.1.0
 [2.0.0]: https://github.com/imtbl/synapse-purge/compare/1.5.0...2.0.0
 [1.5.0]: https://github.com/imtbl/synapse-purge/compare/1.4.1...1.5.0

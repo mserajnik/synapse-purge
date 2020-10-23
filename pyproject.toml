@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "synapse-purge"
-version = "2.1.0"
+version = "2.2.0"
 description = "A script to purge content from Synapse servers"
 authors = ["Chris Braun <cryzed@googlemail.com>", "imtbl <imtbl@mser.at>"]
 license = "AGPL-3.0-or-later"
